@@ -64,8 +64,6 @@ macro(build_pykdl)
     list(APPEND extra_cmake_args "-DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}")
   endif()
   list(APPEND extra_cmake_args "-DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}")
-  list(APPEND extra_cmake_args "-DENABLE_TESTS=OFF")
-  list(APPEND extra_cmake_args "-DENABLE_EXAMPLES=OFF")
 
   include(ExternalProject)
 
