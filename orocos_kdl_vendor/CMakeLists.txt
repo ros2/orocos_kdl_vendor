@@ -10,8 +10,6 @@ option(FORCE_BUILD_VENDOR_PKG
 
 if(NOT FORCE_BUILD_VENDOR_PKG)
   find_package(orocos_kdl QUIET)
-  # TODO(jacobperron): A package config is not provided. How to detect if python bindings are installed?
-  # find_package(python_orocos_kdl QUIET)
 endif()
 
 macro(build_orocos_kdl)
@@ -53,10 +51,10 @@ macro(build_orocos_kdl)
 
   include(ExternalProject)
 
-  # Get orocos_kdl v1.5.1
-  externalproject_add(orocos_kdl-v1.5.1
-    URL https://github.com/orocos/orocos_kinematics_dynamics/archive/refs/tags/v1.5.1.tar.gz
-    URL_MD5 c0f492b08f6608fab58db08002c5d7c4
+  # Build orocos_kdl
+  externalproject_add(orocos_kdl
+    URL https://github.com/orocos/orocos_kinematics_dynamics/archive/e25a13fc5820dbca6b23d10506407bca9bcdd25f.zip
+    URL_MD5 8ac40c9f84eca10dbe1f3777ba715ba0
     TIMEOUT 600
     SOURCE_SUBDIR orocos_kdl
     CMAKE_ARGS
