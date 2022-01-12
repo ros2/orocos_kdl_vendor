@@ -19,10 +19,10 @@
 
   <!-- orocos_kdl depends on eigen -->
   <depend>eigen3_cmake_module</depend>
-  <depend>orocos_kdl</depend>
+  <depend>liborocos-kdl-dev</depend>
   <!-- python_orocos_kdl depends on pybind11 -->
   <depend>pybind11_vendor</depend>
-  <depend>python_orocos_kdl</depend>
+  <depend>python3-pykdl</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
