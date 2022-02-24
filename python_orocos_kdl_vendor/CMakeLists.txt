@@ -81,21 +81,19 @@ macro(build_pykdl)
   )
 
   # Install Python module
-  ExternalProject_Get_Property(pykdl BINARY_DIR)
+  externalproject_get_property(pykdl BINARY_DIR)
   if(WIN32)
     set(pykdl_module "${BINARY_DIR}/PyKDL.pyd")
   else()
     set(pykdl_module "${BINARY_DIR}/PyKDL.so")
   endif()
-
-  # We can't call ament_python_install_module() directly because it checks for the
-  # module file to exist, but it doesn't until after the build step.
-  #     ament_python_install_module(${pykdl_module})
+  # We can't call ament_python_install_module directly because it checks for the
+  # module file to exist, but it doesn't exist until after the build step.
+  # The following lines to install the module are copied directly from ament_python_install_module.
   _ament_cmake_python_register_environment_hook()
   if(NOT PYTHON_INSTALL_DIR)
     message(FATAL_ERROR "'PYTHON_INSTALL_DIR' must not be empty")
   endif()
-
   install(
     FILES "${pykdl_module}"
     DESTINATION "${PYTHON_INSTALL_DIR}"
@@ -103,7 +101,7 @@ macro(build_pykdl)
 endmacro()
 
 if(NOT pykdl_FOUND)
-  message(STATUS "Did not find PyKDL installation, building source")
+  message(STATUS "Did not find PyKDL installation, building from source")
   build_pykdl()
 endif()
 
