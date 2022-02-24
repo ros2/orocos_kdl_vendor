@@ -73,6 +73,7 @@ macro(build_orocos_kdl)
 endmacro()
 
 if(NOT orocos_kdl_FOUND)
+  message(STATUS "Did not find orocos-kdl installation, building from source")
   build_orocos_kdl()
 endif()
 

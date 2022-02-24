@@ -31,6 +31,8 @@ if(NOT FORCE_BUILD_VENDOR_PKG)
 endif()
 
 macro(build_pykdl)
+  find_package(ament_cmake_python REQUIRED)
+
   set(extra_cmake_args)
   if(DEFINED CMAKE_BUILD_TYPE)
     list(APPEND extra_cmake_args -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE})
@@ -73,22 +75,35 @@ macro(build_pykdl)
     URL_MD5 8ac40c9f84eca10dbe1f3777ba715ba0
     TIMEOUT 600
     SOURCE_SUBDIR python_orocos_kdl
+    INSTALL_COMMAND ""
     CMAKE_ARGS
-      -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_install
       ${extra_cmake_args}
   )
 
-  # The external project will install to the build folder, but we'll install that on make install.
+  # Install Python module
+  ExternalProject_Get_Property(pykdl BINARY_DIR)
+  if(WIN32)
+    set(pykdl_module "${BINARY_DIR}/PyKDL.pyd")
+  else()
+    set(pykdl_module "${BINARY_DIR}/PyKDL.so")
+  endif()
+
+  # We can't call ament_python_install_module() directly because it checks for the
+  # module file to exist, but it doesn't until after the build step.
+  #     ament_python_install_module(${pykdl_module})
+  _ament_cmake_python_register_environment_hook()
+  if(NOT PYTHON_INSTALL_DIR)
+    message(FATAL_ERROR "'PYTHON_INSTALL_DIR' must not be empty")
+  endif()
+
   install(
-    DIRECTORY
-      ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_install/
-    DESTINATION
-      ${CMAKE_INSTALL_PREFIX}
-    USE_SOURCE_PERMISSIONS
+    FILES "${pykdl_module}"
+    DESTINATION "${PYTHON_INSTALL_DIR}"
   )
 endmacro()
 
 if(NOT pykdl_FOUND)
+  message(STATUS "Did not find PyKDL installation, building source")
   build_pykdl()
 endif()
 
