@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.12)
 
 project(python_orocos_kdl_vendor)
 
@@ -31,73 +31,40 @@ if(NOT FORCE_BUILD_VENDOR_PKG)
 endif()
 
 macro(build_pykdl)
-  find_package(ament_cmake_python REQUIRED)
+  # Finding pybind11 first avoid a CMake warning about CMP0054 because the
+  # minimum required version is greater than 3.1 in this file
+  find_package(pybind11)
 
-  set(extra_cmake_args)
-  if(DEFINED CMAKE_BUILD_TYPE)
-    list(APPEND extra_cmake_args -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE})
-  endif()
-  if(DEFINED CMAKE_TOOLCHAIN_FILE)
-    list(APPEND extra_cmake_args "-DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}")
-    if(ANDROID)
-      if(DEFINED ANDROID_ABI)
-        list(APPEND extra_cmake_args "-DANDROID_ABI=${ANDROID_ABI}")
-      endif()
-      if(DEFINED ANDROID_CPP_FEATURES)
-        list(APPEND extra_cmake_args "-DANDROID_CPP_FEATURES=${ANDROID_CPP_FEATURES}")
-      endif()
-      if(DEFINED ANDROID_FUNCTION_LEVEL_LINKING)
-        list(APPEND extra_cmake_args "-DANDROID_FUNCTION_LEVEL_LINKING=${ANDROID_FUNCTION_LEVEL_LINKING}")
-      endif()
-      if(DEFINED ANDROID_NATIVE_API_LEVEL)
-        list(APPEND extra_cmake_args "-DANDROID_NATIVE_API_LEVEL=${ANDROID_NATIVE_API_LEVEL}")
-      endif()
-      if(DEFINED ANDROID_NDK)
-        list(APPEND extra_cmake_args "-DANDROID_NDK=${ANDROID_NDK}")
-      endif()
-      if(DEFINED ANDROID_STL)
-        list(APPEND extra_cmake_args "-DANDROID_STL=${ANDROID_STL}")
-      endif()
-      if(DEFINED ANDROID_TOOLCHAIN_NAME)
-        list(APPEND extra_cmake_args "-DANDROID_TOOLCHAIN_NAME=${ANDROID_TOOLCHAIN_NAME}")
-      endif()
-    endif()
-  else()
-    list(APPEND extra_cmake_args "-DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}")
-  endif()
-  list(APPEND extra_cmake_args "-DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}")
+  include(FetchContent)
 
-  include(ExternalProject)
-
-  # Build PyKDL
-  externalproject_add(pykdl
+  FetchContent_Declare(
+    python_orocos_kdl
     URL https://github.com/orocos/orocos_kinematics_dynamics/archive/e25a13fc5820dbca6b23d10506407bca9bcdd25f.zip
     URL_MD5 8ac40c9f84eca10dbe1f3777ba715ba0
-    TIMEOUT 600
-    SOURCE_SUBDIR python_orocos_kdl
-    INSTALL_COMMAND ""
-    CMAKE_ARGS
-      ${extra_cmake_args}
   )
 
-  # Install Python module
-  externalproject_get_property(pykdl BINARY_DIR)
-  if(WIN32)
-    set(pykdl_module "${BINARY_DIR}/PyKDL.pyd")
-  else()
-    set(pykdl_module "${BINARY_DIR}/PyKDL.so")
+  FetchContent_GetProperties(python_orocos_kdl)
+  # TODO(sloretz) use FetchContent_MakeAvailable() when CMake 3.14 is the minimum
+  if(NOT python_orocos_kdl_POPULATED)
+    FetchContent_Populate(python_orocos_kdl)
+    # Make python_orocos_kdl targets part of this project
+    add_subdirectory(
+      "${python_orocos_kdl_SOURCE_DIR}/python_orocos_kdl"
+      ${python_orocos_kdl_BINARY_DIR})
   endif()
-  # We can't call ament_python_install_module directly because it checks for the
-  # module file to exist, but it doesn't exist until after the build step.
-  # The following lines to install the module are copied directly from ament_python_install_module.
+
+  find_package(ament_cmake_python REQUIRED)
+
+  # Figure out where it installed the python module to
+  get_directory_property(pykdl_install_dir
+    DIRECTORY "${python_orocos_kdl_SOURCE_DIR}/python_orocos_kdl"
+    DEFINITION PYTHON_SITE_PACKAGES_INSTALL_DIR)
+
+  # Make an environment hook matching where it got installed
+  set(_backup_PYTHON_INSTALL_DIR "${PYTHON_INSTALL_DIR}")
+  set(PYTHON_INSTALL_DIR "${pykdl_install_dir}")
   _ament_cmake_python_register_environment_hook()
-  if(NOT PYTHON_INSTALL_DIR)
-    message(FATAL_ERROR "'PYTHON_INSTALL_DIR' must not be empty")
-  endif()
-  install(
-    FILES "${pykdl_module}"
-    DESTINATION "${PYTHON_INSTALL_DIR}"
-  )
+  set(PYTHON_INSTALL_DIR "${_backup_PYTHON_INSTALL_DIR}")
 endmacro()
 
 if(NOT pykdl_FOUND)
