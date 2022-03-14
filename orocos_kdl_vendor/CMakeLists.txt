@@ -9,7 +9,8 @@ option(FORCE_BUILD_VENDOR_PKG
   OFF)
 
 if(NOT FORCE_BUILD_VENDOR_PKG)
-  find_package(orocos_kdl QUIET)
+  # Set minimum version to find matching what would be built because PyKDL vendor will require it
+  find_package(orocos_kdl 1.5.1 QUIET)
 endif()
 
 macro(build_orocos_kdl)

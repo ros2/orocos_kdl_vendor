@@ -37,6 +37,7 @@ macro(build_pykdl)
 
   include(FetchContent)
 
+  # This version must match orocos_kdl_vendor exactly
   FetchContent_Declare(
     python_orocos_kdl
     URL https://github.com/orocos/orocos_kinematics_dynamics/archive/e25a13fc5820dbca6b23d10506407bca9bcdd25f.zip
