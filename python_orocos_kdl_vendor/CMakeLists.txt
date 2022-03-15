@@ -31,7 +31,7 @@ if(NOT FORCE_BUILD_VENDOR_PKG)
 endif()
 
 macro(build_pykdl)
-  # Finding pybind11 first avoid a CMake warning about CMP0054 because the
+  # Finding pybind11 first to avoid a CMake warning about CMP0054 because the
   # minimum required version is greater than 3.1 in this file
   find_package(pybind11)
 
