@@ -38,16 +38,16 @@ macro(build_pykdl)
   include(FetchContent)
 
   # This version must match orocos_kdl_vendor exactly
-  FetchContent_Declare(
+  fetchcontent_declare(
     python_orocos_kdl
     URL https://github.com/orocos/orocos_kinematics_dynamics/archive/e25a13fc5820dbca6b23d10506407bca9bcdd25f.zip
     URL_MD5 8ac40c9f84eca10dbe1f3777ba715ba0
   )
 
-  FetchContent_GetProperties(python_orocos_kdl)
+  fetchcontent_getproperties(python_orocos_kdl)
   # TODO(sloretz) use FetchContent_MakeAvailable() when CMake 3.14 is the minimum
   if(NOT python_orocos_kdl_POPULATED)
-    FetchContent_Populate(python_orocos_kdl)
+    fetchcontent_populate(python_orocos_kdl)
     # Make python_orocos_kdl targets part of this project
     add_subdirectory(
       "${python_orocos_kdl_SOURCE_DIR}/python_orocos_kdl"
