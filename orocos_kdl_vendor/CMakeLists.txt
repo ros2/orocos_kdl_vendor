@@ -54,8 +54,8 @@ macro(build_orocos_kdl)
 
   # Build orocos_kdl
   externalproject_add(orocos_kdl
-    URL https://github.com/orocos/orocos_kinematics_dynamics/archive/e25a13fc5820dbca6b23d10506407bca9bcdd25f.zip
-    URL_MD5 8ac40c9f84eca10dbe1f3777ba715ba0
+    URL https://github.com/orocos/orocos_kinematics_dynamics/archive/11d8bd62128092ff64ab20e419b295ca72aada32.zip
+    URL_MD5 0569a66c811ac80b03febf5f06a21650
     TIMEOUT 600
     SOURCE_SUBDIR orocos_kdl
     CMAKE_ARGS
