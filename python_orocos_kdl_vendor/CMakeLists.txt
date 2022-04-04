@@ -36,8 +36,8 @@ macro(build_pykdl)
   # This version must match orocos_kdl_vendor exactly
   fetchcontent_declare(
     python_orocos_kdl
-    URL https://github.com/orocos/orocos_kinematics_dynamics/archive/11d8bd62128092ff64ab20e419b295ca72aada32.zip
-    URL_MD5 0569a66c811ac80b03febf5f06a21650
+    URL https://github.com/orocos/orocos_kinematics_dynamics/archive/4fcf3ec75f3b618842d638a9149d5c5b1e7f0750.zip
+    URL_MD5 8b99e045ad25e557e4f853f66925f449
   )
 
   fetchcontent_getproperties(python_orocos_kdl)
