@@ -2,8 +2,8 @@
 Changelog for package orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.0 (2022-04-05)
+------------------
 * Install headers to include/${PROJECT_NAME} (`#3 <https://github.com/ros2/orocos_kdl_vendor/issues/3>`_)
 * Contributors: Shane Loretz
 
