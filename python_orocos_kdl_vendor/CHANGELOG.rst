@@ -2,6 +2,9 @@
 Changelog for package python_orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.3.0 (2022-04-29)
+------------------
+
 0.2.2 (2022-04-08)
 ------------------
 * Add python_cmake_module as a dependency. (`#5 <https://github.com/ros2/orocos_kdl_vendor/issues/5>`_)
