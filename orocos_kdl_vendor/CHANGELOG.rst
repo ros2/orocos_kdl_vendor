@@ -2,8 +2,8 @@
 Changelog for package orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.1 (2022-06-09)
+------------------
 * Ensure orocos-kdl target references Eigen (`#6 <https://github.com/ros2/orocos_kdl_vendor/issues/6>`_)
 * Contributors: Scott K Logan
 
