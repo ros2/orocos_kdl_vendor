@@ -31,6 +31,10 @@ if(NOT FORCE_BUILD_VENDOR_PKG)
 endif()
 
 macro(build_pykdl)
+  # Find python before pybind11
+  # Workaround for https://github.com/pybind/pybind11/issues/3996
+  find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
+
   include(FetchContent)
 
   # This version must match orocos_kdl_vendor exactly
