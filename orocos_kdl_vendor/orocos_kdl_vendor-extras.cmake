@@ -12,6 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+<<<<<<< HEAD
+=======
+find_package(orocos_kdl REQUIRED)
+if(NOT TARGET orocos-kdl)
+  find_library(orocos_kdl_LIBRARY orocos-kdl REQUIRED)
+  add_library(orocos-kdl SHARED IMPORTED)
+  set_target_properties(orocos-kdl PROPERTIES
+    IMPORTED_LOCATION "${orocos_kdl_LIBRARY}"
+    INTERFACE_LINK_LIBRARIES "${orocos_kdl_LIBRARIES}"
+    INTERFACE_INCLUDE_DIRECTORIES "${orocos_kdl_INCLUDE_DIRS}")
+endif()
+
+>>>>>>> 08bff59 (Make sure to quote orocos variables when setting targets. (#12))
 find_package(eigen3_cmake_module REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(orocos_kdl REQUIRED)
