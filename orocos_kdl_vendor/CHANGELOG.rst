@@ -2,6 +2,11 @@
 Changelog for package orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Make sure to quote orocos variables when setting targets. (`#12 <https://github.com/ros2/orocos_kdl_vendor/issues/12>`_)
+* Contributors: Chris Lalancette
+
 0.3.2 (2022-06-21)
 ------------------
 * Ensure orocos-kdl is available as a target (`#10 <https://github.com/ros2/orocos_kdl_vendor/issues/10>`_)
