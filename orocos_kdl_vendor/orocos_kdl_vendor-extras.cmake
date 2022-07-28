@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-<<<<<<< HEAD
-=======
 find_package(orocos_kdl REQUIRED)
 if(NOT TARGET orocos-kdl)
   find_library(orocos_kdl_LIBRARY orocos-kdl REQUIRED)
@@ -24,16 +22,12 @@ if(NOT TARGET orocos-kdl)
     INTERFACE_INCLUDE_DIRECTORIES "${orocos_kdl_INCLUDE_DIRS}")
 endif()
 
->>>>>>> 08bff59 (Make sure to quote orocos variables when setting targets. (#12))
 find_package(eigen3_cmake_module REQUIRED)
 find_package(Eigen3 REQUIRED)
-find_package(orocos_kdl REQUIRED)
-if(TARGET orocos-kdl)
-  message(STATUS "Ensuring Eigen3 include directory is part of orocos-kdl CMake target")
-  if(TARGET Eigen3::Eigen)
-    # TODO: require target to exist when https://github.com/ros2/choco-packages/issues/19 is addressed
-    target_link_libraries(orocos-kdl INTERFACE Eigen3::Eigen)
-  else()
-    target_include_directories(orocos-kdl SYSTEM INTERFACE ${Eigen3_INCLUDE_DIRS})
-  endif()
+message(STATUS "Ensuring Eigen3 include directory is part of orocos-kdl CMake target")
+if(TARGET Eigen3::Eigen)
+  # TODO: require target to exist when https://github.com/ros2/choco-packages/issues/19 is addressed
+  target_link_libraries(orocos-kdl INTERFACE Eigen3::Eigen)
+else()
+  target_include_directories(orocos-kdl SYSTEM INTERFACE ${Eigen3_INCLUDE_DIRS})
 endif()
