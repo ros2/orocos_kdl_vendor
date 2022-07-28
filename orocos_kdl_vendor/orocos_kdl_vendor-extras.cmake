@@ -17,9 +17,9 @@ if(NOT TARGET orocos-kdl)
   find_library(orocos_kdl_LIBRARY orocos-kdl REQUIRED)
   add_library(orocos-kdl SHARED IMPORTED)
   set_target_properties(orocos-kdl PROPERTIES
-    IMPORTED_LOCATION ${orocos_kdl_LIBRARY}
-    INTERFACE_LINK_LIBRARIES ${orocos_kdl_LIBRARIES}
-    INTERFACE_INCLUDE_DIRECTORIES ${orocos_kdl_INCLUDE_DIRS})
+    IMPORTED_LOCATION "${orocos_kdl_LIBRARY}"
+    INTERFACE_LINK_LIBRARIES "${orocos_kdl_LIBRARIES}"
+    INTERFACE_INCLUDE_DIRECTORIES "${orocos_kdl_INCLUDE_DIRS}")
 endif()
 
 find_package(eigen3_cmake_module REQUIRED)
