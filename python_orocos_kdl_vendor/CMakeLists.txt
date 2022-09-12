@@ -8,6 +8,11 @@ option(FORCE_BUILD_VENDOR_PKG
   "Build python_orocos_kdl from source, even if system-installed package is available"
   OFF)
 
+# Avoid DOWNLOAD_EXTRACT_TIMESTAMP warning for CMake >= 3.24
+if(POLICY CMP0135)
+  cmake_policy(SET CMP0135 NEW)
+endif()
+
 if(NOT FORCE_BUILD_VENDOR_PKG)
   # Check if Python bindings are installed by trying to import from interpreter
   # Figure out Python3 debug/release before anything else can find_package it
