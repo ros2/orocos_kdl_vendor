@@ -2,6 +2,12 @@
 Changelog for package python_orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixes policy CMP0135 warning for CMake >= 3.24 (`#16 <https://github.com/ros2/orocos_kdl_vendor/issues/16>`_)
+* Workaround pybind11 CMake error (`#9 <https://github.com/ros2/orocos_kdl_vendor/issues/9>`_)
+* Contributors: Cristóbal Arroyo, Jacob Perron
+
 0.3.3 (2022-06-24)
 ------------------
 
