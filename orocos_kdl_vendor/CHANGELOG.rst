@@ -2,6 +2,9 @@
 Changelog for package orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.5 (2023-01-20)
+------------------
+
 0.2.4 (2022-08-05)
 ------------------
 * Make sure to quote orocos variables when setting targets. (`#14 <https://github.com/ros2/orocos_kdl_vendor/issues/14>`_)

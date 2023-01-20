@@ -2,6 +2,11 @@
 Changelog for package python_orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.5 (2023-01-20)
+------------------
+* Fixes policy CMP0135 warning for CMake >= 3.24 (`#16 <https://github.com/ros2/orocos_kdl_vendor/issues/16>`_) (`#18 <https://github.com/ros2/orocos_kdl_vendor/issues/18>`_)
+* Contributors: mergify[bot]
+
 0.2.4 (2022-08-05)
 ------------------
 
