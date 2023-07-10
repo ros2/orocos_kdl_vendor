@@ -3,7 +3,7 @@ project(orocos_kdl_vendor)
 
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_vendor_package REQUIRED)
-
+find_package(eigen3_cmake_module REQUIRED)
 # Set minimum version to find matching what would be built because PyKDL vendor will require it
 find_package(orocos_kdl 1.5.1 QUIET)
 
