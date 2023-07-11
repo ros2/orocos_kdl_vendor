@@ -2,8 +2,8 @@
 Changelog for package orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.1 (2023-07-11)
+------------------
 * Switch to ament_cmake_vendor_package (`#20 <https://github.com/ros2/orocos_kdl_vendor/issues/20>`_)
 * Contributors: Scott K Logan
 
