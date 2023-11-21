@@ -19,13 +19,10 @@ if(NOT FORCE_BUILD_VENDOR_PKG)
   if(WIN32 AND CMAKE_BUILD_TYPE STREQUAL "Debug")
     find_package(python_cmake_module REQUIRED)
     find_package(PythonExtra REQUIRED)
-
-    # Force FindPython3 to use the debug interpreter where ROS 2 expects it
-    set(Python3_EXECUTABLE "${PYTHON_EXECUTABLE_DEBUG}")
   endif()
   find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
   execute_process(
-    COMMAND ${Python3_EXECUTABLE} -c "import PyKDL"
+    COMMAND PythonExtra::Interpreter -c "import PyKDL"
     RESULT_VARIABLE pykdl_import_exit_code
     OUTPUT_QUIET
     ERROR_QUIET
