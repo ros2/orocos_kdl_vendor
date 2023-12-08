@@ -1,5 +1,5 @@
---- a/CMakeLists.txt	2023-12-08 15:19:53.469243534 +0000
-+++ b/CMakeLists.txt	2023-12-08 15:20:18.110104659 +0000
+--- a/python_orocos_kdl/CMakeLists.txt	2023-12-08 15:19:53.469243534 +0000
++++ b/python_orocos_kdl/CMakeLists.txt	2023-12-08 15:20:18.110104659 +0000
 @@ -26,6 +26,17 @@ endif()
  set(PYBIND11_PYTHON_VERSION ${PYTHON_VERSION} CACHE STRING "Python version used by PyBind11")
  
