@@ -5,9 +5,9 @@
  
  find_package(Python ${PYTHON_VERSION} COMPONENTS Interpreter Development REQUIRED)
 +if(WIN32 AND CMAKE_BUILD_TYPE STREQUAL "Debug")
-+  get_filename_component(_python_executable_dir "${PYTHON_EXECUTABLE}" DIRECTORY)
-+  get_filename_component(_python_executable_name "${PYTHON_EXECUTABLE}" NAME_WE)
-+  get_filename_component(_python_executable_ext "${PYTHON_EXECUTABLE}" EXT)
++  get_filename_component(_python_executable_dir "${Python_EXECUTABLE}" DIRECTORY)
++  get_filename_component(_python_executable_name "${Python_EXECUTABLE}" NAME_WE)
++  get_filename_component(_python_executable_ext "${Python_EXECUTABLE}" EXT)
 +  set(_python_executable_debug "${_python_executable_dir}/${_python_executable_name}_d${_python_executable_ext}")
 +  if(EXISTS "${_python_executable_debug}")
 +    set(Python_EXECUTABLE "${_python_executable_debug}")
