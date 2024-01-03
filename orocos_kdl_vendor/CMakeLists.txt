@@ -10,7 +10,7 @@ find_package(orocos_kdl 1.5.1 QUIET)
 ament_vendor(orocos_kdl_vendor
   SATISFIED ${orocos_kdl_FOUND}
   VCS_URL https://github.com/orocos/orocos_kinematics_dynamics.git
-  VCS_VERSION 507de66205e14b12c8c65f25eafc05c4dc66e21e
+  VCS_VERSION ce4bcb65a050615b6d7f21bc60fbb2656515791b
   SOURCE_SUBDIR orocos_kdl
   GLOBAL_HOOK
   CMAKE_ARGS

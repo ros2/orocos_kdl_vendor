@@ -45,8 +45,11 @@ macro(build_pykdl)
   # This version must match orocos_kdl_vendor exactly
   fetchcontent_declare(
     python_orocos_kdl
-    URL https://github.com/orocos/orocos_kinematics_dynamics/archive/507de66205e14b12c8c65f25eafc05c4dc66e21e.zip
-    URL_MD5 3f547798ab4461b8247fb764435f3623
+    URL https://github.com/orocos/orocos_kinematics_dynamics/archive/ce4bcb65a050615b6d7f21bc60fbb2656515791b.zip
+    URL_MD5 f273799921a2fd21b79211c93fa67a5d
+    PATCH_COMMAND
+      ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-change --whitespace=nowarn
+        ${CMAKE_CURRENT_SOURCE_DIR}/patches/0001-fix-windows-debug.patch
   )
 
   fetchcontent_getproperties(python_orocos_kdl)
