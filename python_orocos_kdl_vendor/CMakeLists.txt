@@ -14,16 +14,7 @@ if(POLICY CMP0135)
 endif()
 
 if(NOT FORCE_BUILD_VENDOR_PKG)
-  # Check if Python bindings are installed by trying to import from interpreter
-  # Figure out Python3 debug/release before anything else can find_package it
-  if(WIN32 AND CMAKE_BUILD_TYPE STREQUAL "Debug")
-    find_package(python_cmake_module REQUIRED)
-    find_package(PythonExtra REQUIRED)
-
-    # Force FindPython3 to use the debug interpreter where ROS 2 expects it
-    set(Python3_EXECUTABLE "${PYTHON_EXECUTABLE_DEBUG}")
-  endif()
-  find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
+  find_package(Python3 REQUIRED COMPONENTS Interpreter)
   execute_process(
     COMMAND ${Python3_EXECUTABLE} -c "import PyKDL"
     RESULT_VARIABLE pykdl_import_exit_code
@@ -36,10 +27,6 @@ if(NOT FORCE_BUILD_VENDOR_PKG)
 endif()
 
 macro(build_pykdl)
-  # Find python before pybind11
-  # Workaround for https://github.com/pybind/pybind11/issues/3996
-  find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
-
   include(FetchContent)
 
   # This version must match orocos_kdl_vendor exactly
@@ -47,9 +34,10 @@ macro(build_pykdl)
     python_orocos_kdl
     URL https://github.com/orocos/orocos_kinematics_dynamics/archive/ce4bcb65a050615b6d7f21bc60fbb2656515791b.zip
     URL_MD5 f273799921a2fd21b79211c93fa67a5d
+    UPDATE_DISCONNECTED TRUE
     PATCH_COMMAND
       ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-change --whitespace=nowarn
-        ${CMAKE_CURRENT_SOURCE_DIR}/patches/0001-fix-windows-debug.patch
+        ${CMAKE_CURRENT_SOURCE_DIR}/patches/0001-use-python3.patch
   )
 
   fetchcontent_getproperties(python_orocos_kdl)
