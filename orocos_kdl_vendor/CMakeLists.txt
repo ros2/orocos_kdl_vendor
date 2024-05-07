@@ -16,6 +16,7 @@ ament_vendor(orocos_kdl_vendor
   CMAKE_ARGS
     -DENABLE_TESTS:BOOL=OFF
     -DENABLE_EXAMPLES:BOOL=OFF
+  PATCHES patches
 )
 
 if(BUILD_TESTING)

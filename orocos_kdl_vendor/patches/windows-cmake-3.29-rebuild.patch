@@ -1,0 +1,26 @@
+diff --git a/orocos_kdl/CMakeLists.txt b/orocos_kdl/CMakeLists.txt
+index f9d37e0..2882744 100644
+--- a/orocos_kdl/CMakeLists.txt
++++ b/orocos_kdl/CMakeLists.txt
+@@ -113,14 +113,17 @@ export(TARGETS orocos-kdl
+ export(PACKAGE orocos_kdl)
+ 
+ # Generate CMake package configuration
++# Note that we generate them into temporary files in the build (BINARY_DIR)
++# directory so that subsequent builds won't accidentally find these if they
++# happen to call find_package(orocos_kdl) (this can happen with vendor packages).
+ CONFIGURE_FILE(orocos_kdl-config.cmake.in
+-  ${PROJECT_BINARY_DIR}/orocos_kdl-config.cmake @ONLY)
++  ${PROJECT_BINARY_DIR}/tmp_orocos_kdl-config.cmake @ONLY)
+ CONFIGURE_FILE(orocos_kdl-config-version.cmake.in
+-  ${PROJECT_BINARY_DIR}/orocos_kdl-config-version.cmake @ONLY)
++  ${PROJECT_BINARY_DIR}/tmp_orocos_kdl-config-version.cmake @ONLY)
+ 
+ INSTALL(FILES cmake/FindEigen3.cmake DESTINATION share/orocos_kdl/cmake)
+-INSTALL(FILES ${PROJECT_BINARY_DIR}/orocos_kdl-config.cmake DESTINATION share/orocos_kdl/cmake)
+-INSTALL(FILES ${PROJECT_BINARY_DIR}/orocos_kdl-config-version.cmake DESTINATION share/orocos_kdl/cmake)
++INSTALL(FILES ${PROJECT_BINARY_DIR}/tmp_orocos_kdl-config.cmake RENAME orocos_kdl-config.cmake DESTINATION share/orocos_kdl/cmake)
++INSTALL(FILES ${PROJECT_BINARY_DIR}/tmp_orocos_kdl-config-version.cmake RENAME orocos_kdl-config-version.cmake DESTINATION share/orocos_kdl/cmake)
+ INSTALL(EXPORT OrocosKDLTargets DESTINATION share/orocos_kdl/cmake)
+ 
+ # Generate pkg-config package configuration
