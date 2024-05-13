@@ -2,8 +2,8 @@
 Changelog for package orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.5.1 (2024-05-13)
+------------------
 * Ensure that orocos_kdl_vendor doesn't accidentally find itself. (`#27 <https://github.com/ros2/orocos_kdl_vendor/issues/27>`_) (`#28 <https://github.com/ros2/orocos_kdl_vendor/issues/28>`_)
   When initially building the orocos_kdl_vendor package (on platforms
   where it actually builds), it turns out that it places a
