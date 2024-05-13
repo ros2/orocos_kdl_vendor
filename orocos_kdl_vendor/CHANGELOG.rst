@@ -2,6 +2,23 @@
 Changelog for package orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Ensure that orocos_kdl_vendor doesn't accidentally find itself. (`#27 <https://github.com/ros2/orocos_kdl_vendor/issues/27>`_) (`#28 <https://github.com/ros2/orocos_kdl_vendor/issues/28>`_)
+  When initially building the orocos_kdl_vendor package (on platforms
+  where it actually builds), it turns out that it places a
+  valid cmake configuration in the build directory.  In turn,
+  that means that a subsequent rebuild will find this configuration
+  in the build directory, and throw the rest of the logic off.
+  This only seems to be a problem with CMake 3.29 and later, though
+  I can't say exactly why at the moment.
+  Workaround this problem by writing the configuration out to a
+  temporary file, and then moving it into the final place with
+  the final name.
+  (cherry picked from commit 7aad6d1ad9fa54f3a48f1f194a85127e362c8ade)
+  Co-authored-by: Chris Lalancette <clalancette@gmail.com>
+* Contributors: mergify[bot]
+
 0.5.0 (2024-01-24)
 ------------------
 * Update to the latest orocos_kdl_kinematics commit. (`#25 <https://github.com/ros2/orocos_kdl_vendor/issues/25>`_)
