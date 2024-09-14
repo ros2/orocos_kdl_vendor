@@ -14,6 +14,7 @@ ament_vendor(orocos_kdl_vendor
   SOURCE_SUBDIR orocos_kdl
   GLOBAL_HOOK
   CMAKE_ARGS
+    -DCMAKE_CXX_STANDARD=11
     -DENABLE_TESTS:BOOL=OFF
     -DENABLE_EXAMPLES:BOOL=OFF
   PATCHES patches
