@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.20)
 
 project(python_orocos_kdl_vendor)
 
@@ -13,17 +13,23 @@ if(POLICY CMP0135)
   cmake_policy(SET CMP0135 NEW)
 endif()
 
-if(NOT FORCE_BUILD_VENDOR_PKG)
-  # Check if Python bindings are installed by trying to import from interpreter
-  # Figure out Python3 debug/release before anything else can find_package it
-  if(WIN32 AND CMAKE_BUILD_TYPE STREQUAL "Debug")
-    find_package(python_cmake_module REQUIRED)
-    find_package(PythonExtra REQUIRED)
+# By default, without the settings below, find_package(Python3) will attempt
+# to find the newest python version it can, and additionally will find the
+# most specific version.  For instance, on a system that has
+# /usr/bin/python3.10, /usr/bin/python3.11, and /usr/bin/python3, it will find
+# /usr/bin/python3.11, even if /usr/bin/python3 points to /usr/bin/python3.10.
+# The behavior we want is to prefer the "system" installed version unless the
+# user specifically tells us othewise through the Python3_EXECUTABLE hint.
+# Setting CMP0094 to NEW means that the search will stop after the first
+# python version is found.  Setting Python3_FIND_UNVERSIONED_NAMES means that
+# the search will prefer /usr/bin/python3 over /usr/bin/python3.11.  And that
+# latter functionality is only available in CMake 3.20 or later, so we need
+# at least that version.
+cmake_policy(SET CMP0094 NEW)
+set(Python3_FIND_UNVERSIONED_NAMES FIRST)
 
-    # Force FindPython3 to use the debug interpreter where ROS 2 expects it
-    set(Python3_EXECUTABLE "${PYTHON_EXECUTABLE_DEBUG}")
-  endif()
-  find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
+if(NOT FORCE_BUILD_VENDOR_PKG)
+  find_package(Python3 REQUIRED COMPONENTS Interpreter)
   execute_process(
     COMMAND ${Python3_EXECUTABLE} -c "import PyKDL"
     RESULT_VARIABLE pykdl_import_exit_code
@@ -36,10 +42,6 @@ if(NOT FORCE_BUILD_VENDOR_PKG)
 endif()
 
 macro(build_pykdl)
-  # Find python before pybind11
-  # Workaround for https://github.com/pybind/pybind11/issues/3996
-  find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
-
   include(FetchContent)
 
   # This version must match orocos_kdl_vendor exactly
@@ -47,9 +49,10 @@ macro(build_pykdl)
     python_orocos_kdl
     URL https://github.com/orocos/orocos_kinematics_dynamics/archive/ce4bcb65a050615b6d7f21bc60fbb2656515791b.zip
     URL_MD5 f273799921a2fd21b79211c93fa67a5d
+    UPDATE_DISCONNECTED TRUE
     PATCH_COMMAND
       ${CMAKE_COMMAND} -E chdir <SOURCE_DIR> git apply -p1 --ignore-space-change --whitespace=nowarn
-        ${CMAKE_CURRENT_SOURCE_DIR}/patches/0001-fix-windows-debug.patch
+        ${CMAKE_CURRENT_SOURCE_DIR}/patches/0001-use-python3.patch
   )
 
   fetchcontent_getproperties(python_orocos_kdl)
