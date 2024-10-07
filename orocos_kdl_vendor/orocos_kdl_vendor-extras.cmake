@@ -20,6 +20,14 @@ if(NOT TARGET orocos-kdl)
     IMPORTED_LOCATION "${orocos_kdl_LIBRARY}"
     INTERFACE_LINK_LIBRARIES "${orocos_kdl_LIBRARIES}"
     INTERFACE_INCLUDE_DIRECTORIES "${orocos_kdl_INCLUDE_DIRS}")
+else()
+  # TODO(clalancette): As of 2024-10-07, the orocos-kdl package in Conda does not properly
+  # set the INTERFACE_INCLUDE_DIRECTORIES on the target, so downstream consumers cannot find
+  # the headers.  Set this property if it has not already been set on the target.
+  get_target_property(orocos_kdl_interface_include_dirs orocos-kdl INTERFACE_INCLUDE_DIRECTORIES)
+  if(NOT orocos_kdl_interface_include_dirs)
+    set_target_properties(orocos-kdl PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${orocos_kdl_INCLUDE_DIRS}")
+  endif()
 endif()
 
 find_package(eigen3_cmake_module REQUIRED)
