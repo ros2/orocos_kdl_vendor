@@ -8,7 +8,8 @@ find_package(ament_cmake_vendor_package REQUIRED)
 find_package(orocos_kdl 1.5.1 QUIET)
 
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 17)
+  # orocos_kdl uses some deprecated APIs in C++17, so we set this to C++11
+  set(CMAKE_CXX_STANDARD 11)
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
