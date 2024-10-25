@@ -57,8 +57,8 @@ macro(build_pykdl)
 
   fetchcontent_makeavailable(python_orocos_kdl)
   add_subdirectory(
-      "${python_orocos_kdl_SOURCE_DIR}/python_orocos_kdl"
-      ${python_orocos_kdl_BINARY_DIR})
+    "${python_orocos_kdl_SOURCE_DIR}/python_orocos_kdl"
+    ${python_orocos_kdl_BINARY_DIR})
 
   find_package(ament_cmake_python REQUIRED)
 
