@@ -55,15 +55,10 @@ macro(build_pykdl)
         ${CMAKE_CURRENT_SOURCE_DIR}/patches/0001-use-python3.patch
   )
 
-  fetchcontent_getproperties(python_orocos_kdl)
-  # TODO(sloretz) use FetchContent_MakeAvailable() when CMake 3.14 is the minimum
-  if(NOT python_orocos_kdl_POPULATED)
-    fetchcontent_populate(python_orocos_kdl)
-    # Make python_orocos_kdl targets part of this project
-    add_subdirectory(
-      "${python_orocos_kdl_SOURCE_DIR}/python_orocos_kdl"
-      ${python_orocos_kdl_BINARY_DIR})
-  endif()
+  fetchcontent_makeavailable(python_orocos_kdl)
+  add_subdirectory(
+    "${python_orocos_kdl_SOURCE_DIR}/python_orocos_kdl"
+    ${python_orocos_kdl_BINARY_DIR})
 
   find_package(ament_cmake_python REQUIRED)
 
