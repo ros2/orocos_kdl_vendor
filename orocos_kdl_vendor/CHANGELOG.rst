@@ -2,8 +2,8 @@
 Changelog for package orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.0 (2024-11-20)
+------------------
 * fix: add cxx_standard to avoid c++ check error (`#30 <https://github.com/ros2/orocos_kdl_vendor/issues/30>`_)
 * Contributors: Homalozoa X
 
