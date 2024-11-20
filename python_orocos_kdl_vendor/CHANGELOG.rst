@@ -2,6 +2,12 @@
 Changelog for package python_orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* fix: use fetchcontent_makeavailable to fix CMP0169 (`#32 <https://github.com/ros2/orocos_kdl_vendor/issues/32>`_)
+* Remove the use of python_cmake_module (`#26 <https://github.com/ros2/orocos_kdl_vendor/issues/26>`_)
+* Contributors: Chris Lalancette, Homalozoa X
+
 0.6.1 (2024-06-17)
 ------------------
 
