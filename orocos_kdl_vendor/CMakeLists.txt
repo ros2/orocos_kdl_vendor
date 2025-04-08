@@ -24,7 +24,6 @@ ament_vendor(orocos_kdl_vendor
     -DENABLE_TESTS:BOOL=OFF
     -DENABLE_EXAMPLES:BOOL=OFF
     -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-
   PATCHES patches
 )
 
