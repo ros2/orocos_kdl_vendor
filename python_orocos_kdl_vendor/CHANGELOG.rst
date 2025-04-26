@@ -2,6 +2,9 @@
 Changelog for package python_orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.1 (2025-04-25)
+------------------
+
 0.7.0 (2024-11-20)
 ------------------
 * fix: use fetchcontent_makeavailable to fix CMP0169 (`#32 <https://github.com/ros2/orocos_kdl_vendor/issues/32>`_)

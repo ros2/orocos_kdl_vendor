@@ -2,6 +2,12 @@
 Changelog for package orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.1 (2025-04-25)
+------------------
+* Use the same cmake version (`#36 <https://github.com/ros2/orocos_kdl_vendor/issues/36>`_)
+* Resolve compatibility issue with newer cmake (`#35 <https://github.com/ros2/orocos_kdl_vendor/issues/35>`_)
+* Contributors: Alejandro Hernández Cordero, Øystein Sture
+
 0.7.0 (2024-11-20)
 ------------------
 * fix: add cxx_standard to avoid c++ check error (`#30 <https://github.com/ros2/orocos_kdl_vendor/issues/30>`_)
