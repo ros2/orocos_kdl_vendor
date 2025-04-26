@@ -2,6 +2,9 @@
 Changelog for package orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.8.0 (2025-04-25)
+------------------
+
 0.7.1 (2025-04-25)
 ------------------
 * Use the same cmake version (`#36 <https://github.com/ros2/orocos_kdl_vendor/issues/36>`_)
