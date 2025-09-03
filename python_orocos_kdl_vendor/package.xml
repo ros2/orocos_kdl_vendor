@@ -20,7 +20,7 @@
 
   <depend>orocos_kdl_vendor</depend>
   <!-- python_orocos_kdl depends on pybind11 -->
-  <depend>pybind11_vendor</depend>
+  <depend>pybind11-dev</depend>
   <depend>python3-pykdl</depend>
 
   <test_depend>ament_lint_auto</test_depend>
