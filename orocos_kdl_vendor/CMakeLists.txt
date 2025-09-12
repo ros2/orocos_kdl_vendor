@@ -5,7 +5,7 @@ find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_vendor_package REQUIRED)
 
 # Set minimum version to find matching what would be built because PyKDL vendor will require it
-find_package(orocos_kdl 1.5.2 QUIET)
+find_package(orocos_kdl 1.5.3 QUIET)
 
 if(NOT CMAKE_CXX_STANDARD)
   # orocos_kdl uses some deprecated APIs in C++17, so we set this to C++17
