@@ -30,7 +30,7 @@
     <build_type>ament_cmake</build_type>
     <deprecated>
       This package will be removed in ROS 2 Lyrical Luth. Instead, use
-      distributed package which provides some functionality.
+      distributed package which provides same functionality.
     </deprecated>
   </export>
 </package>
