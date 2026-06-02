@@ -2,6 +2,9 @@
 Changelog for package python_orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.5.1 (2024-05-13)
 ------------------
 

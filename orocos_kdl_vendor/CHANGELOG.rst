@@ -2,6 +2,14 @@
 Changelog for package orocos_kdl_vendor
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Resolve compatibility issue with Eigen 5.0.0 (min c++14) (backport `#39 <https://github.com/ros2/orocos_kdl_vendor/issues/39>`_) (`#42 <https://github.com/ros2/orocos_kdl_vendor/issues/42>`_)
+  * Resolve compatibility issue with Eigen 5.0.0 (min c++14) (`#39 <https://github.com/ros2/orocos_kdl_vendor/issues/39>`_)
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+  (cherry picked from commit 98a9e0686b58fb4684c77f28c824d86765a58bb9)
+* Contributors: mergify[bot]
+
 0.5.1 (2024-05-13)
 ------------------
 * Ensure that orocos_kdl_vendor doesn't accidentally find itself. (`#27 <https://github.com/ros2/orocos_kdl_vendor/issues/27>`_) (`#28 <https://github.com/ros2/orocos_kdl_vendor/issues/28>`_)
